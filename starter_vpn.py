@@ -29,8 +29,10 @@ def main():
     pattern = r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
 
     match = re.search(pattern, output)
-    if match:
-        ip_local = match.group()
+    
+    ip_local = match.group()
+
+    print("IP del chip:", ip_local)
 
     os.system(f"route add {VPN_SERVER_IP} gw {ip_local}")
     # os.system("")
