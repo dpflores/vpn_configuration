@@ -5,8 +5,10 @@ from datetime import date
 VPN_SERVER_IP='137.184.105.94' #ACME VPN IP
 
 def main():
-	
-	print("connecting VPN")
+
+    # print("Connecting to chip")
+	os.system("ppp -c")
+	# print("connecting VPN")
 
 	# Do it every reboot (we'll put it in /etc/rc.local)
 	os.system("mkdir -p /var/run/xl2tpd")
