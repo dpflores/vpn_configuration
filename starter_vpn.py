@@ -33,7 +33,7 @@ def main():
         ip_local = match.group()
 
     os.system(f"route add {VPN_SERVER_IP} gw {ip_local}")
-    os.system("")
+    # os.system("")
     
     # os.system("r")
 
