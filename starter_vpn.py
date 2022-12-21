@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 from datetime import date
 
 VPN_SERVER_IP='137.184.105.94' #ACME VPN IP
@@ -34,13 +35,17 @@ def main():
 
     print("IP del chip:", ip_local)
 
+
     os.system(f"route add {VPN_SERVER_IP} gw {ip_local}")
+
+    time.sleep(5)
     # os.system("")
     
     # os.system("r")
 
     # os.system("route add default dev ppp0")
     os.system("route add default dev ppp1")
+    time.sleep(5)
     os.system("wget -qO- http://ipv4.icanhazip.com; echo")
 
 
