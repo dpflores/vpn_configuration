@@ -59,7 +59,7 @@ def main():
 
 	# Creamos el archivo que se ejecutará cada vez
 
-	os.system("cat > /etc/init.d/startup_script <<EOF\n /usr/bin/python3 /home/scripts/vpn_configuration/starter_vpn.py\nexit 0\nEOF")
+	os.system("cat > /etc/init.d/startup_script <<EOF\n /usr/bin/python3 /root/vpn_configuration/starter_vpn.py\nexit 0\nEOF")
 
 if __name__ == '__main__':
 	main()

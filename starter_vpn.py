@@ -20,17 +20,17 @@ def main():
 	os.system("echo \"c myvpn\" > /var/run/xl2tpd/l2tp-control")
 
 	output = os.popen("ip route").read()
-	import re
+	# import re
 
-	pattern = r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
+	# pattern = r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
 
-	match = re.search(pattern, output)
-	if match:
-		ip_local = match.group()
+	# match = re.search(pattern, output)
+	# if match:
+	# 	ip_local = match.group()
 
-	os.system(f"route add {VPN_SERVER_IP} gw {ip_local}")
+	# os.system(f"route add {VPN_SERVER_IP} gw {ip_local}")
 
-	os.system("route add default dev ppp0")
+	os.system("route add default dev ppp1")
 	os.system("wget -qO- http://ipv4.icanhazip.com; echo")
 
 
