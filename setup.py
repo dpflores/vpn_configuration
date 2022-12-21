@@ -13,9 +13,9 @@ def main():
 		print("Abort.")
 		sys.exit(1)
 
-	# os.system("apt-get update")
-	# os.system("apt-get install strongswan xl2tpd net-tools")
-	# os.system("apt-get install strongswan xl2tpd net-tools")	
+	os.system("apt-get update")
+	os.system("apt-get install strongswan xl2tpd net-tools")
+	os.system("apt-get install strongswan xl2tpd net-tools")	
 
 	os.system("VPN_SERVER_IP='137.184.105.94'")
 	os.system("VPN_IPSEC_PSK='Mikrotik123*'")
