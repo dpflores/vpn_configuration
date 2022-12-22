@@ -1,7 +1,7 @@
 
 FROM ubuntu:focal
 
-RUN apt-get update --privileged
+RUN apt-get update
 
 RUN apt-get install git -y
 RUN apt-get install python3.8 python3.8-dev -y
