@@ -1,31 +1,84 @@
-#
-# Copyright (C) 2016-2022 Lin Song <linsongui@gmail.com>
-#
-# This work is licensed under the Creative Commons Attribution-ShareAlike 3.0
-# Unported License: http://creativecommons.org/licenses/by-sa/3.0/
-#
-# Attribution required: please include my name in any derivative and let me
-# know how you have improved it!
 
-FROM debian:bullseye-slim
+FROM ubuntu:focal
 
-RUN apt-get -y update \
-    && DEBIAN_FRONTEND=noninteractive \
-    && apt-get install strongswan xl2tpd net-tools
- 
+RUN apt-get update
 
-COPY ./run.sh /opt/src/run.sh
-RUN chmod 755 /opt/src/run.sh
-EXPOSE 500/udp 4500/udp
-# CMD ["/opt/src/run.sh"]
+RUN apt-get install git -y
+RUN apt-get install python3.8 python3.8-dev -y
 
-RUN useradd --create-home --shell /bin/bash axotec_user && echo "axotec_user:axotec" | chpasswd && adduser axotec_user sudo
-WORKDIR /home/axotec_user
+RUN printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.d
 
-USER axotec_user
+RUN apt-get install wget -y
 
 
+RUN apt-get install strongswan xl2tpd net-tools -y
+
+
+RUN VPN_SERVER_IP='137.184.105.94'
+RUN VPN_IPSEC_PSK='Mikrotik123*'
+RUN VPN_USER='PROYECTOS2'
+RUN VPN_PASSWORD='121383Loco!'
+
+
+RUN cat > /etc/ipsec.conf <<EOF
+# ipsec.conf - strongSwan IPsec configuration file
+
+conn myvpn
+  auto=add
+  keyexchange=ikev1
+  authby=secret
+  type=transport
+  left=%defaultroute
+  leftprotoport=17/1701
+  rightprotoport=17/1701
+  right=$VPN_SERVER_IP
+  ike=aes128-sha1-modp2048
+  esp=aes128-sha1
+EOF
+
+RUN cat > /etc/ipsec.secrets <<EOF
+: PSK "$VPN_IPSEC_PSK"
+EOF
+
+RUN chmod 600 /etc/ipsec.secrets
 
 
 
-CMD ["bash"]
+RUN cat > /etc/xl2tpd/xl2tpd.conf <<EOF
+[lac myvpn]
+lns = $VPN_SERVER_IP
+ppp debug = yes
+pppoptfile = /etc/ppp/options.l2tpd.client
+length bit = yes
+EOF
+
+RUN cat > /etc/ppp/options.l2tpd.client <<EOF
+ipcp-accept-local
+ipcp-accept-remote
+refuse-eap
+require-chap
+noccp
+noauth
+mtu 1280
+mru 1280
+noipdefault
+defaultroute
+usepeerdns
+connect-delay 5000
+name "$VPN_USER"
+password "$VPN_PASSWORD"
+EOF
+
+RUN chmod 600 /etc/ppp/options.l2tpd.client
+
+RUN mkdir -p /var/run/xl2tpd
+
+RUN touch /var/run/xl2tpd/l2tp-control
+
+COPY --chown=root:root . /home/applications/vpn_configuration
+
+RUN /usr/bin/python3 
+
+CMD ["python3","/home/applications/vpn_configuration/starter_vpn.py"]
+
+# CMD ["bash"]

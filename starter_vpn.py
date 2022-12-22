@@ -23,8 +23,8 @@ def main():
     os.system("echo \"c myvpn\" > /var/run/xl2tpd/l2tp-control")
 
     # Getting chip IP
-    output = os.popen("ifconfig ppp0").read()
-
+    # output = os.popen("ifconfig ppp0").read()  chio
+    output = os.popen("ip route").read() 
     import re
 
     pattern = r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
@@ -43,8 +43,8 @@ def main():
     
     # os.system("r")
 
-    # os.system("route add default dev ppp0")
-    os.system("route add default dev ppp1")
+    os.system("route add default dev ppp0")
+    # os.system("route add default dev ppp1")
     time.sleep(5)
     os.system("wget -qO- http://ipv4.icanhazip.com; echo")
 
