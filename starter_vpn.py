@@ -35,9 +35,9 @@ def main():
 
     print("IP del chip:", ip_local)
 
-
+    
     os.system(f"route add {VPN_SERVER_IP} gw {ip_local}")
-
+    
     time.sleep(5)
     # os.system("")
     
