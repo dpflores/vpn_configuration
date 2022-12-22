@@ -22,7 +22,6 @@ RUN VPN_PASSWORD='121383Loco!'
 
 RUN cat > /etc/ipsec.conf <<EOF
 # ipsec.conf - strongSwan IPsec configuration file
-
 conn myvpn
   auto=add
   keyexchange=ikev1
