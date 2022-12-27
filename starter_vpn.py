@@ -2,7 +2,9 @@ import os
 import sys
 import time
 import re
-from datetime import date
+# from datetime import date
+
+import socket
 
 VPN_SERVER_IP='137.184.105.94' #ACME VPN IP
 
@@ -49,6 +51,24 @@ def main():
     time.sleep(5)
     os.system("wget -qO- http://ipv4.icanhazip.com; echo")
 
+    hostname = "www.google.com"
+    
+
+    while True:
+        try:
+            socket.gethostbyname(hostname)
+            # Si llegamos aquí, significa que tenemos conexión a Internet
+            conectado = True
+        except socket.gaierror:
+            # Si llegamos aquí, significa que no tenemos conexión a Internet
+            conectado = False   
+            sys.exit(1)
+        
+
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+
+    except:
+        sys.exit(1)
