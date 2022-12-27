@@ -60,7 +60,7 @@ def main():
     
     if CONNECTION == "chip":
         os.system("route add default dev ppp1")
-        
+
     time.sleep(2)
     # vpn_ip_result = os.system("wget -qO- http://ipv4.icanhazip.com; echo")
     vpn_ip_result_raw = os.popen("wget -qO- http://ipv4.icanhazip.com; echo").read()
@@ -75,10 +75,10 @@ def main():
     while True:
         result = subprocess.run(["ping", "-c", "1", IP_ADDRESS], stdout=subprocess.PIPE)
         if result.returncode == 0:
-            # print(f"La conexión con {IP_ADDRESS} está activa")
+            print(f"La conexión con {IP_ADDRESS} está activa")
             pass
         else:
-            # print(f"La conexión con {IP_ADDRESS} NO está activa")
+            print(f"La conexión con {IP_ADDRESS} NO está activa")
             sys.exit(1)
         time.sleep(5)
 
