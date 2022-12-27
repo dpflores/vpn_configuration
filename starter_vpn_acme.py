@@ -58,7 +58,8 @@ def main():
     # os.system("route add default dev ppp1")
     time.sleep(2)
     vpn_ip_result = os.system("wget -qO- http://ipv4.icanhazip.com; echo")
-
+    vpn_ip_result = os.popen("wget -qO- http://ipv4.icanhazip.com; echo").read()
+    
     print(vpn_ip_result)
 
     if vpn_ip_result != VPN_SERVER_IP:
