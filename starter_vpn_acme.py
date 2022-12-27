@@ -9,10 +9,13 @@ import subprocess
 VPN_SERVER_IP='137.184.105.94' # ACME VPN IP
 IP_ADDRESS = "10.0.0.99"  
 
+CONNECTION = "chip"     # "chip" para datos moviles o "wifi" para la conexion a un router
+
 def main():
 
     # print("Connecting to chip")
-    os.system("ppp -c")
+    if CONNECTION=="chip":
+        os.system("ppp -c")
     # print("connecting VPN")
 
     # Do it every reboot (we'll put it in /etc/rc.local)
@@ -27,8 +30,12 @@ def main():
     os.system("echo \"c myvpn\" > /var/run/xl2tpd/l2tp-control")
 
     # Getting chip IP
-    # output = os.popen("ifconfig ppp0").read()   #chip
-    output = os.popen("ip route").read()      #network   
+    
+    if CONNECTION == "chip":
+        output = os.popen("ifconfig ppp0").read()   #chip
+    
+    if CONNECTION == "wifi":
+        output = os.popen("ip route").read()      #network   
     
 
     pattern = r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
