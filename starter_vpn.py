@@ -51,7 +51,7 @@ def main():
     time.sleep(5)
     os.system("wget -qO- http://ipv4.icanhazip.com; echo")
 
-    hostname = "www.google.com"
+    hostname = "10.0.0.99"
     
 
     while True:
