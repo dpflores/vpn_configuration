@@ -60,7 +60,7 @@ def main():
     # vpn_ip_result = os.system("wget -qO- http://ipv4.icanhazip.com; echo")
     vpn_ip_result = os.popen("wget -qO- http://ipv4.icanhazip.com; echo").read()
     
-    # print(vpn_ip_result)
+    print(vpn_ip_result,"jsjsjs")
 
     if vpn_ip_result != VPN_SERVER_IP:
         sys.exit(1)
