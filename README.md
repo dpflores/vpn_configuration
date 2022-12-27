@@ -1,4 +1,11 @@
+install docker (version = )
+https://docs.docker.com/engine/install/debian/
+
+
+
 docker run --name vpn_container --restart=always --privileged --network host -it vpn_image 
+
+docker run --name vpn_container --restart=always --privileged --network host -it ubuntu:focal
 
 
 ubuntu:focal
@@ -14,7 +21,7 @@ printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.d
 apt-get install wget -y
 
 
-apt-get install strongswan xl2tpd net-tools
+apt-get install strongswan xl2tpd net-tools -y
 
 
 
@@ -33,6 +40,7 @@ route add 137.184.105.94 gw 192.168.88.1
 route add default dev ppp0
 
 wget -qO- http://ipv4.icanhazip.com; echo
+
 
 
 

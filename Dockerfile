@@ -80,4 +80,3 @@ RUN /usr/bin/python3
 
 CMD ["python3","/home/applications/vpn_configuration/starter_vpn.py"]
 
-# CMD ["bash"]

@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import re
 from datetime import date
 
 VPN_SERVER_IP='137.184.105.94' #ACME VPN IP
@@ -23,9 +24,9 @@ def main():
     os.system("echo \"c myvpn\" > /var/run/xl2tpd/l2tp-control")
 
     # Getting chip IP
-    # output = os.popen("ifconfig ppp0").read()  chio
-    output = os.popen("ip route").read() 
-    import re
+    # output = os.popen("ifconfig ppp0").read()   #chip
+    output = os.popen("ip route").read()      #network   
+    
 
     pattern = r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
 
