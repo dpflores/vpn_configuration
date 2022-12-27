@@ -6,7 +6,8 @@ import re
 
 import socket
 
-VPN_SERVER_IP='137.184.105.94' #ACME VPN IP
+VPN_SERVER_IP='137.184.105.94' # ACME VPN IP
+IP_COMM = "10.0.0.99"          # IP de la comunicación VPN
 
 def main():
 
@@ -51,12 +52,12 @@ def main():
     time.sleep(5)
     os.system("wget -qO- http://ipv4.icanhazip.com; echo")
 
-    hostname = "10.0.0.99"
+    
     
 
     while True:
         try:
-            socket.gethostbyname(hostname)
+            socket.gethostbyname(IP_COMM)
             # Si llegamos aquí, significa que tenemos conexión a Internet
             conectado = True
             
@@ -65,7 +66,7 @@ def main():
             # Si llegamos aquí, significa que no tenemos conexión a Internet
             conectado = False   
             sys.exit(1)
-        print("Connected")
+        print(f"Connected: {conectado}")
         time.sleep(5)
         
 
