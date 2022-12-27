@@ -47,3 +47,30 @@ wget -qO- http://ipv4.icanhazip.com; echo
 
 
 
+# Creacion de un servicio en linux
+
+Para crear un servicio con systemd, primero debes crear un archivo de configuración para el servicio. Este archivo debe tener un nombre que termine en .service y debe estar ubicado en el directorio /etc/systemd/system. El archivo debe contener información sobre el servicio, como su nombre, el comando que se debe ejecutar para iniciar el servicio, y las dependencias del servicio.
+
+```
+cd /etc/systemd/system
+touch vpn_acme.service
+nano vpn_acme.service
+```
+
+
+```
+[Unit]
+Description=Mi servicio mqtt
+After=multi-user.target
+
+[Service]
+
+Type=simple
+
+ExecStart=/home/del/Del/Programming/python/python_mqtt/venv-python_mqtt/bin/python /home/del/Del/Programming/python/python_mqtt/main.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+```
