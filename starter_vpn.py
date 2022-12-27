@@ -59,10 +59,14 @@ def main():
             socket.gethostbyname(hostname)
             # Si llegamos aquí, significa que tenemos conexión a Internet
             conectado = True
+            
+
         except socket.gaierror:
             # Si llegamos aquí, significa que no tenemos conexión a Internet
             conectado = False   
             sys.exit(1)
+        print("Connected")
+        time.sleep(5)
         
 
 
