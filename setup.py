@@ -62,7 +62,7 @@ def main():
 	# os.system("cat > /etc/init.d/startup_script <<EOF\n /usr/bin/python3 /root/vpn_configuration/starter_vpn.py\nexit 0\nEOF")
 
 	print("Setting the vpn_acme service")
-	os.system("cp vpn_acme.service /root/vpn_configuration")
+	os.system("cp vpn_acme.service /etc/systemd/system")
 	os.system("systemctl enable vpn_acme.service")
 	os.system("systemctl start vpn_acme.service")
 
