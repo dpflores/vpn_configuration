@@ -7,7 +7,7 @@ import subprocess
 
 
 VPN_SERVER_IP='137.184.105.94' # ACME VPN IP
-IP_ADDRESS = "10.0.0.99"  
+IP_ADDRESS = "10.0.0.2"     # VERIFICAR QUE SEA ESTÁTICO
 
 CONNECTION = "wifi"     # "chip" para datos moviles o "wifi" para la conexion a un router
 
