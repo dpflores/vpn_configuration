@@ -7,7 +7,7 @@ import re
 import socket
 
 VPN_SERVER_IP='137.184.105.94' # ACME VPN IP
-IP_COMM = "10.0.0.99"          # IP de la comunicación VPN
+IP_COMM = "10.0.0.98"          # IP de la comunicación VPN
 
 def main():
 
