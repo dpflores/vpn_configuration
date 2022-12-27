@@ -6,16 +6,16 @@ import subprocess
 # from datetime import date
 
 
-IP_ADDRESS = "10.20.0.32"          # IP de la comunicación VPN
+IP_ADDRESS = "10.20.0.31"          # IP de la comunicación VPN
 
 def main():
 
     # print("Connecting to chip")
-    os.system("ppp -c")
+    # os.system("ppp -c")
     # print("connecting VPN")
 
     # Do it every reboot (we'll put it in /etc/rc.local)
-    os.system("openvpn3 session-start --config /root/userKomatsuLE200_01_Axotec.ovpn") # ejecutamos el comando para el openvpn
+    os.system("openvpn3 session-start --config /home/del/Del/ACME/AXOTEC/komatsu_vpn/userKomatsuLE200_01_User.ovpn") # ejecutamos el comando para el openvpn
 
 
     while True:

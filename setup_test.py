@@ -67,9 +67,9 @@ def main():
 	# os.system("systemctl start vpn_acme.service")
 
 	print("Setting the openVPN")
-	os.system("cp open_vpn.service /etc/systemd/system")
-	os.system("systemctl enable open_vpn.service")
-	os.system("systemctl start open_vpn.service")
+	os.system("cp open_vpn_test.service /etc/systemd/system")
+	os.system("systemctl enable open_vpn_test.service")
+	os.system("systemctl start open_vpn_test.service")
 
 	print("done")
 if __name__ == '__main__':

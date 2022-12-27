@@ -1,0 +1,14 @@
+[Unit]
+Description=Servicio OpenVPN
+After=multi-user.target
+
+[Service]
+
+Type=simple
+
+ExecStart=/usr/bin/python3 /root/vpn_configuration/starter_open_vpn.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
