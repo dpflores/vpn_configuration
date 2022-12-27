@@ -2,12 +2,12 @@ import os
 import sys
 import time
 import re
+import subprocess
 # from datetime import date
 
-import socket
 
 VPN_SERVER_IP='137.184.105.94' # ACME VPN IP
-IP_COMM = "10.0.0.99"          # IP de la comunicación VPN
+IP_ADDRESS = "10.0.0.99"          # IP de la comunicación VPN
 
 def main():
 
@@ -20,17 +20,12 @@ def main():
 
 
     while True:
-        try:
-            socket.gethostbyname(IP_COMM)
-            # Si llegamos aquí, significa que tenemos conexión a Internet
-            conectado = True
-            
-
-        except socket.gaierror:
-            # Si llegamos aquí, significa que no tenemos conexión a Internet
-            conectado = False   
+        result = subprocess.run(["ping", "-c", "1", IP_ADDRESS], stdout=subprocess.PIPE)
+        if result.returncode == 0:
+            print(f"La conexión con {IP_ADDRESS} está activa")
+        else:
+            print(f"La conexión con {IP_ADDRESS} NO está activa")
             sys.exit(1)
-        print(f"Connected: {conectado}")
         time.sleep(5)
         
 
