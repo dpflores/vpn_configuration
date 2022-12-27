@@ -62,7 +62,7 @@ def main():
         os.system("route add default dev ppp1")
 
     time.sleep(2)
-    # vpn_ip_result = os.system("wget -qO- http://ipv4.icanhazip.com; echo")
+    vpn_ip_result = os.system("wget -qO- http://ipv4.icanhazip.com; echo")
     vpn_ip_result_raw = os.popen("wget -qO- http://ipv4.icanhazip.com; echo").read()
     
     vpn_ip_result = get_ip_string(vpn_ip_result_raw)
