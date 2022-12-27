@@ -9,7 +9,7 @@ import subprocess
 VPN_SERVER_IP='137.184.105.94' # ACME VPN IP
 IP_ADDRESS = "10.0.0.2"     # VERIFICAR QUE SEA ESTÁTICO
 
-CONNECTION = "wifi"     # "chip" para datos moviles o "wifi" para la conexion a un router
+CONNECTION = "chip"     # "chip" para datos moviles o "wifi" para la conexion a un router
 
 def get_ip_string(text):
     pattern = r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
