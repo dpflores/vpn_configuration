@@ -11,6 +11,13 @@ IP_ADDRESS = "10.0.0.99"
 
 CONNECTION = "wifi"     # "chip" para datos moviles o "wifi" para la conexion a un router
 
+def get_ip_string(text):
+    pattern = r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
+
+    match = re.search(pattern, text)
+    
+    return match.group()
+
 def main():
 
     # print("Connecting to chip")
@@ -37,12 +44,8 @@ def main():
     if CONNECTION == "wifi":
         output = os.popen("ip route").read()      #network   
     
-
-    pattern = r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
-
-    match = re.search(pattern, output)
     
-    ip_local = match.group()
+    ip_local = get_ip_string(output)
 
     print("IP del chip:", ip_local)
 
@@ -50,17 +53,20 @@ def main():
     os.system(f"route add {VPN_SERVER_IP} gw {ip_local}")
     
     time.sleep(1)
-    # os.system("")
-    
-    # os.system("r")
+   
 
-    os.system("route add default dev ppp0")
-    # os.system("route add default dev ppp1")
+    if CONNECTION == "wifi":
+        os.system("route add default dev ppp0")
+    
+    if CONNECTION == "chip":
+        os.system("route add default dev ppp1")
+        
     time.sleep(2)
     # vpn_ip_result = os.system("wget -qO- http://ipv4.icanhazip.com; echo")
-    vpn_ip_result = os.popen("wget -qO- http://ipv4.icanhazip.com; echo").read()
+    vpn_ip_result_raw = os.popen("wget -qO- http://ipv4.icanhazip.com; echo").read()
     
-    print(vpn_ip_result,"jsjsjs")
+    vpn_ip_result = get_ip_string(vpn_ip_result_raw)
+
 
     if vpn_ip_result != VPN_SERVER_IP:
         sys.exit(1)
