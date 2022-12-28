@@ -6,7 +6,7 @@ import subprocess
 # from datetime import date
 
 
-IP_ADDRESS = "10.20.0.31"          # IP de la comunicación VPN
+IP_ADDRESS = "10.20.0.32"          # IP de la comunicación VPN
 
 def main():
 
