@@ -74,3 +74,10 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 ```
+
+systemctl enable vpn_acme.service
+
+systemctl status vpn_acme.service
+
+python3 vpn_configuration/starter_vpn_acme.py
+
