@@ -21,9 +21,9 @@ def main():
     while True:
         result = subprocess.run(["ping", "-c", "1", IP_ADDRESS], stdout=subprocess.PIPE)
         if result.returncode == 0:
-            print(f"La conexión con {IP_ADDRESS} está activa")
+            os.system("echo La conexión está activa")
         else:
-            print(f"La conexión con {IP_ADDRESS} NO está activa")
+            os.system("echo La conexión se ha perdido")
             sys.exit(1)
         time.sleep(5)
         
