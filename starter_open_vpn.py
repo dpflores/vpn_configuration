@@ -25,7 +25,7 @@ def main():
         else:
             os.system("echo La conexión se ha perdido")
             sys.exit(1)
-        time.sleep(5)
+        time.sleep(30)
         
 
 
