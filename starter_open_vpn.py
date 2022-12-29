@@ -15,7 +15,7 @@ def main():
     # print("connecting VPN")
 
     # Do it every reboot (we'll put it in /etc/rc.local)
-    os.system("openvpn3 session-start --config /root/userKomatsuLE200_01_Axotec.ovpn") # ejecutamos el comando para el openvpn
+    os.system("openvpn --config /root/userKomatsuLE200_01_Axotec.ovpn") # ejecutamos el comando para el openvpn
 
 
     while True:
