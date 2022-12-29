@@ -12,6 +12,7 @@ def main():
 
     # print("Connecting to chip")
     os.system("ppp -c")
+    os.system("echo Conexion al chip realizado")
     # print("connecting VPN")
 
     time.sleep(10)
