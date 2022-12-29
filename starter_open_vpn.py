@@ -14,6 +14,8 @@ def main():
     os.system("ppp -c")
     # print("connecting VPN")
 
+    time.sleep(10)
+
     # Do it every reboot (we'll put it in /etc/rc.local)
     os.system("openvpn --config /root/userKomatsuLE200_01_Axotec.ovpn") # ejecutamos el comando para el openvpn
 
@@ -25,7 +27,7 @@ def main():
         else:
             os.system("echo La conexión se ha perdido")
             sys.exit(1)
-        time.sleep(30)
+        time.sleep(10)
         
 
 
