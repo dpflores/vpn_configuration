@@ -14,6 +14,7 @@ def main():
     os.system("ppp -c")
     os.system("echo Conexion al chip realizado")
     # print("connecting VPN")
+    time.sleep(10)
 
     # Do it every reboot (we'll put it in /etc/rc.local)
     os.system("openvpn --daemon --config /root/userKomatsuLE200_01_Axotec.ovpn") # ejecutamos el comando para el openvpn
