@@ -11,10 +11,10 @@ IP_ADDRESS = "10.20.0.31"          # IP de la comunicación VPN
 def main():
 
     # print("Connecting to chip")
-    os.system("ppp -cD")
+    os.system("ppp -c")
     os.system("echo Conexion al chip realizado")
     # print("connecting VPN")
-    time.sleep(10)
+    time.sleep(30)
 
     # Do it every reboot (we'll put it in /etc/rc.local)
     os.system("openvpn --daemon --config /root/userKomatsuLE200_01_Axotec.ovpn") # ejecutamos el comando para el openvpn
