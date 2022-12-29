@@ -11,7 +11,7 @@ IP_ADDRESS = "10.20.0.31"          # IP de la comunicación VPN
 def main():
 
     # print("Connecting to chip")
-    os.system("pppd call gprs")
+    os.system("ppp -c")
     # print("connecting VPN")
 
     # Do it every reboot (we'll put it in /etc/rc.local)
