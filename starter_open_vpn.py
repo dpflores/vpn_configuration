@@ -14,12 +14,12 @@ def main():
     os.system("ppp -c")
     os.system("echo Conexion al chip realizado")
     # print("connecting VPN")
-    time.sleep(30)
+    time.sleep(15)
 
     # Do it every reboot (we'll put it in /etc/rc.local)
     os.system("openvpn --daemon --config /root/userKomatsuLE200_01_Axotec.ovpn") # ejecutamos el comando para el openvpn
     # el daemon es para que se ejecute en segundo plano y no muestre los logs
-
+    time.sleep(15)
 
     while True:
         result = subprocess.run(["ping", "-c", "1", IP_ADDRESS], stdout=subprocess.PIPE)
