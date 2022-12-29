@@ -11,7 +11,7 @@ IP_ADDRESS = "10.20.0.31"          # IP de la comunicación VPN
 def main():
 
     # print("Connecting to chip")
-    os.system("ppp -c")
+    os.system("ppp -cD")
     os.system("echo Conexion al chip realizado")
     # print("connecting VPN")
     time.sleep(10)
