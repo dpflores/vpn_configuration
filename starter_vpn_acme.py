@@ -23,6 +23,10 @@ def main():
     # print("Connecting to chip")
     if CONNECTION=="chip":
         os.system("ppp -c")
+        os.system("echo Conexion al chip realizado")
+        # print("connecting VPN")
+        time.sleep(60)
+
     # print("connecting VPN")
 
     # Do it every reboot (we'll put it in /etc/rc.local)
@@ -36,6 +40,8 @@ def main():
     os.system("ipsec up myvpn")
     os.system("echo \"c myvpn\" > /var/run/xl2tpd/l2tp-control")
 
+    time.sleep(10)
+
     # Getting chip IP
     
     if CONNECTION == "chip":
@@ -47,21 +53,23 @@ def main():
     
     ip_local = get_ip_string(output)
 
-    print("IP del chip:", ip_local)
+    # print("IP del chip:", ip_local)
 
     
     os.system(f"route add {VPN_SERVER_IP} gw {ip_local}")
     
-    time.sleep(1)
+    time.sleep(10)
    
 
     if CONNECTION == "wifi":
         os.system("route add default dev ppp0")
+        time.sleep(30)
     
     if CONNECTION == "chip":
         os.system("route add default dev ppp1")
+        time.sleep(30)
 
-    time.sleep(2)
+    
     vpn_ip_result = os.system("wget -qO- http://ipv4.icanhazip.com; echo")
     vpn_ip_result_raw = os.popen("wget -qO- http://ipv4.icanhazip.com; echo").read()
     
@@ -71,7 +79,7 @@ def main():
     if vpn_ip_result != VPN_SERVER_IP:
         sys.exit(1)
     
-
+    time.sleep(30)
     while True:
         result = subprocess.run(["ping", "-c", "1", IP_ADDRESS], stdout=subprocess.PIPE)
         if result.returncode == 0:
@@ -82,7 +90,7 @@ def main():
             os.system("echo La conexión se ha perdido")
             # print(f"La conexión con {IP_ADDRESS} NO está activa")
             sys.exit(1)
-        time.sleep(5)
+        time.sleep(10)
 
 
 if __name__ == '__main__':
