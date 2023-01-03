@@ -1,3 +1,5 @@
 FROM debian:bullseye-slim
 
-RUN apt-get update --allow-unauthenticated
+ENV TZ=America/Los_Angeles
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN apt-get update
