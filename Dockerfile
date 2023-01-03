@@ -1,4 +1,4 @@
 FROM debian:bullseye-slim
 
-ENV TZ="America/Lima"
+RUN sudo echo "America/Lima" > /etc/timezone
 RUN date
